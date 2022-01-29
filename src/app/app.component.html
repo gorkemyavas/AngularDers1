@@ -1,15 +1,14 @@
-<input type="text" [(ngModel)]="searchText">
-<button (click)="getProductBySearchText()">Ara</button>
+<input type="text" [(ngModel)]="getAllProductInput.searchText" placeholder="searchText">
+<input type="text" [(ngModel)]="getAllProductInput.productType" placeholder="productType">
+<select [(ngModel)]="getAllProductInput.maxResultCount">
+  <option value="5">5</option>
+  <option value="10">10</option>
+  <option value="25">25</option>
+  <option value="50">50</option>
 
+</select>
+<button (click)="getFilteredProducts()">Ara</button>
 
-<div *ngFor="let product of productsSearchText">
-  {{product.name}}-{{product.price}}
-</div>
-<hr>
-
-<div *ngFor="let product of productsType">
-  {{product.name}}-{{product.price}}
-</div>
 <hr>
 
 <div *ngFor="let product of products">
