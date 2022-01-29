@@ -1,6 +1,6 @@
 import {BaseEntityModel} from "../base-entity.model";
 import {TeacherModel} from "../teacher.model";
-import {StudentModel} from "../student.model";
+import {StudentModel} from "../student/student.model";
 
 export class ProductModel extends BaseEntityModel {
   name?: string;

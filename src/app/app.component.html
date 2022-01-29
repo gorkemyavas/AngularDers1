@@ -1,3 +1,10 @@
+<input type="text" [(ngModel)]="singleProductId" placeholder="Id">
+<button (click)="getProduct(singleProductId)">Getir</button>
+<div>
+  {{singleProduct.name}}-{{singleProduct.price}}
+</div>
+
+<hr>
 <input type="text" [(ngModel)]="getAllProductInput.searchText" placeholder="searchText">
 <input type="text" [(ngModel)]="getAllProductInput.productType" placeholder="productType">
 <select [(ngModel)]="getAllProductInput.maxResultCount">
@@ -12,5 +19,5 @@
 <hr>
 
 <div *ngFor="let product of products">
-  {{product.name}}-{{product.price}}
+{{product.id}}---  {{product.name}}-{{product.price}}
 </div>

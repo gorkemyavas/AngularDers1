@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ProductModel, ProductType} from "./shared/model/product/product.model";
 import {ProductService} from "./shared/services/product/product.service";
 import {GetAllProductInput} from "./shared/model/product/get-all-product-input";
+import {StudentService} from "./shared/services/student/student.service";
+import {GetAllStudentInput} from "./shared/model/student/get-all-student-input";
 
 
 @Component({
@@ -10,16 +12,20 @@ import {GetAllProductInput} from "./shared/model/product/get-all-product-input";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService, private studentService: StudentService) {
   }
 
   products: ProductModel[] = [];
 
   getAllProductInput: GetAllProductInput = new GetAllProductInput();
 
+  singleProduct: ProductModel = new ProductModel();
+  singleProductId: string = "";
 
   ngOnInit(): void {
-
+    this.studentService.getAll(new GetAllStudentInput()).subscribe(x => {
+      console.log(x);
+    });
 
     this.productService.getProducts(this.getAllProductInput).subscribe(x => {
       this.products = x;
@@ -35,6 +41,12 @@ export class AppComponent implements OnInit {
       this.products = x;
     });
 
+  }
+
+  getProduct(id: string) {
+    this.productService.getProduct(id).subscribe(product => {
+      this.singleProduct = product;
+    });
   }
 
 }

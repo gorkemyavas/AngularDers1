@@ -4,7 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {ProductModel, ProductType} from "../../model/product/product.model";
 import {Observable, Subject} from "rxjs";
 import {PagedResultModel} from "../../model/paged-result.model";
-import {StudentModel} from "../../model/student.model";
+import {StudentModel} from "../../model/student/student.model";
 import {GetAllProductInput} from "../../model/product/get-all-product-input";
 
 @Injectable({
@@ -49,6 +49,13 @@ export class ProductService {
     return subject.asObservable();
   }
 
+  getProduct(id:string): Observable<ProductModel>{
+    let subject = new Subject<ProductModel>();
+    this.http.get<BaseModel<ProductModel>>('http://api.mat.goozifmedia.com/api/services/app/Product/Get?Id='+id).subscribe(productsFromBackend => {
+      subject.next((productsFromBackend.result as ProductModel));
+    });
+    return subject.asObservable();
+  }
 
 
 }

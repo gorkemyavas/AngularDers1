@@ -1,4 +1,4 @@
-import {BaseEntityModel} from "./base-entity.model";
+import {BaseEntityModel} from "../base-entity.model";
 
 export class StudentModel extends BaseEntityModel {
   email?: string;
