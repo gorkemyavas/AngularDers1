@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Post} from "./shared/model/post.model";
-import {ProductModel} from "./shared/model/product.model";
-import {BaseModel} from "./shared/model/base.model";
+import {ProductModel, ProductType} from "./shared/model/product.model";
+import {ProductService} from "./shared/services/product/product.service";
 
 
 @Component({
@@ -10,19 +8,31 @@ import {BaseModel} from "./shared/model/base.model";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
-
-  productModel : ProductModel = new ProductModel();
-
-
-  constructor(private http : HttpClient) {
+export class AppComponent implements OnInit {
+  constructor(private productService: ProductService) {
   }
 
-  ngOnInit(): void {
-    this.http.get<BaseModel>('http://api.mat.goozifmedia.com/api/services/app/Product/GetAll').subscribe(products =>{
-      console.log(products);
-     // this.posts =postsFromBackend;
+  products : ProductModel[] = [];
+  productsType : ProductModel[] = [];
+  productsSearchText : ProductModel[] = [];
 
+  searchText:string="";
+
+
+  ngOnInit(): void {
+
+    this.productService.getProducts().subscribe(x => {
+      this.products = x;
+    });
+
+    this.productService.getProductByProductType(ProductType.PrivateLessonMonthly).subscribe(x => {
+      this.productsType = x;
+    });
+  }
+
+  getProductBySearchText(){
+    this.productService.getProductBySearchText(this.searchText).subscribe(x => {
+      this.productsSearchText = x;
     });
 
   }

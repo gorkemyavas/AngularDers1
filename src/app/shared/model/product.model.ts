@@ -1,11 +1,13 @@
 import {BaseEntityModel} from "./base-entity.model";
+import {TeacherModel} from "./teacher.model";
+import {StudentModel} from "./student.model";
 
 export class ProductModel extends BaseEntityModel {
   name?: string;
   price?: number;
   slug?: string;
   contentUrl?: string;
-  productType?: number;
+  productType: ProductType;
   lessonType?: null;
   level?: number | null;
   imgUrl?: string;
@@ -19,30 +21,26 @@ export class ProductModel extends BaseEntityModel {
   contentId?: null;
   content?: null;
   products?: null;
+  constructor() {
+    super();
+    this.productType=ProductType.PrivateLesson;
+
+  }
+}
+
+export enum ProductType{
+  PrivateLesson = 0,
+  VideoLesson = 1,
+  Resource = 2,
+  Packet = 3,
+  PrivateLessonMonthly = 4,
+  Consultancy=5,
+  ConsultancyMonthly=6
 }
 
 
-export class StudentModel extends BaseEntityModel {
-  email?: string;
-  name?: string;
-  surname?: string;
-  birthDay?: Date;
-  school?: string;
-  level?: number;
-  city?: number;
-  phone?: string;
-  answers?: any[];
-  answered?: boolean;
-  consultancy?: boolean;
-  consultancyMonthly?: boolean;
-}
 
-export class TeacherModel extends BaseEntityModel {
-  email?: string;
-  name?: string;
-  surname?: string;
-  imageUrl?: string;
-  description?: string;
-}
+
+
 
 

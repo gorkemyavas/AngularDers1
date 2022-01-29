@@ -1,0 +1,17 @@
+<input type="text" [(ngModel)]="searchText">
+<button (click)="getProductBySearchText()">Ara</button>
+
+
+<div *ngFor="let product of productsSearchText">
+  {{product.name}}-{{product.price}}
+</div>
+<hr>
+
+<div *ngFor="let product of productsType">
+  {{product.name}}-{{product.price}}
+</div>
+<hr>
+
+<div *ngFor="let product of products">
+  {{product.name}}-{{product.price}}
+</div>

@@ -1,3 +1,4 @@
+/*
 import {BaseModel} from "./base.model";
 
 export class Post extends BaseModel {
@@ -14,3 +15,4 @@ export class Post extends BaseModel {
   }
 
 }
+*/

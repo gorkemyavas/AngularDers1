@@ -1,8 +1,7 @@
-import {IEntity} from "../interface/ientity";
+import {PagedResultModel} from "./paged-result.model";
 
-
-export class BaseModel {
-  result?: PagedResultModel | IEntity | null;
+export class BaseModel<T> {
+  result?: PagedResultModel<T> | T | null;
   targetUrl?: any;
   success?: boolean;
   error?: any;
@@ -20,14 +19,3 @@ export class BaseModel {
 }
 
 
-
-
-export class PagedResultModel {
-  totalCount?: number;
-  items?: IEntity[];
-
-  constructor() {
-    this.totalCount = 0;
-    this.items = [];
-  }
-}
